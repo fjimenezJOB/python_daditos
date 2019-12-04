@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+    {% block title %}
+        {{super()}}
+            Usuario
+    {% endblock %}
+
+
+{% block header %}
+
+
+{% endblock %}
+
+
+{% block main %}
+<form action="{{ url_for('usuario') }}" method="post">
+    <input class="input" type="text" placeholder="Text input">
+    <button class="button is-info" type="submit">Empezar</button>
+</form>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}
