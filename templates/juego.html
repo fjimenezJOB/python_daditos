@@ -5,24 +5,31 @@ Juego
 {% endblock %}
 
 {% block main %}
-    <h1>Dados lanzados: </h1>
-    {% for i in session.tirada %}
-    <h1 class="button is-warning">{{i}}</h1>
-    {% endfor %}
-<form action="{{ url_for('juego') }}" method="post">
-    <button class="button is-success" type="submit">Tirar</button>
+<h1>Dados lanzados: </h1>
+{% for i in session.tirada %}
+<h1 class="button is-warning">{{i}}</h1>
+{% endfor %}
+<form action="{{ url_for('juego') }}" method="post"><br><br>
+    <button class="button is-success" type="submit">Tirar los dados</button>
 </form>
 {% endblock %}
 {% block footer %}
-
-<div class="container">
     <h1>Historial de tiradas para {{session.user}}:</h1>
-<ul>
-    {% for i in session.historial %}
-    <li>
-        <button class="button is-success">{{session.historial[0][i]}}</button>
-    <li>
-    {% endfor %}
-</ul>
-</div>
+    <table class="table 
+    table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+                <th class="is-centered">Tiradas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in session.historial[0] %}
+                <tr>
+                    <td>
+                        <button class="button is-success">{{i}}</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
