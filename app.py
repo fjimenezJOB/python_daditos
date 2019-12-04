@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, session, request
-from libreria.conexion import insertar_usuario
+from libreria.conexion import insertar_usuario, tirarDados, insertar_tiradas, sacarRegistro
 app = Flask(__name__)
 app.secret_key = 'contraseña_secreta'
 
@@ -8,7 +8,7 @@ app.secret_key = 'contraseña_secreta'
 def usuario():
     if request.method == 'POST':
         usuario = request.form.get('user')
-        insertar_usuario(usuario)
+        # insertar_usuario(usuario)
         session['user'] = usuario
         dados = request.form.get('dados')
         session['dados'] = dados
@@ -22,8 +22,19 @@ def usuario():
 def juego():
     if session:
         usuario = session['user']
+        caras = int(session['caras'])
+        dados = int(session['dados'])
+        tirada = tirarDados(dados, caras)
+        insertar_tiradas(tirada, usuario)
+        session['tirada'] = tirada
+        session['historial'] = sacarRegistro(usuario)
+        print(session['historial'])
+        return render_template('juego.html')
+    else:
+        redirect('/')
 
-    return render_template('juego.html')
+# @app.errorhandler(404)
+
 
 @app.route('/salir')
 def salir():
@@ -32,4 +43,4 @@ def salir():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 5000, debug= True)
+    app.run('0.0.0.0', 5000, debug=True)

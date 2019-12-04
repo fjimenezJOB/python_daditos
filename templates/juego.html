@@ -1,21 +1,28 @@
 {% extends 'base.html' %}
-    {% block title %}
-        {{super()}}
-            Juego
-    {% endblock %}
-
-    {% block main %}
-
-    <form action="{{ url_for('juego') }}" method="post">
-        
-
-        <button class="button is-success" type="submit">Tirar</button>
-
-    </form>
-
+{% block title %}
+{{super()}}
+Juego
 {% endblock %}
 
-
+{% block main %}
+    <h1>Dados lanzados: </h1>
+    {% for i in session.tirada %}
+    <h1 class="button is-warning">{{i}}</h1>
+    {% endfor %}
+<form action="{{ url_for('juego') }}" method="post">
+    <button class="button is-success" type="submit">Tirar</button>
+</form>
+{% endblock %}
 {% block footer %}
 
+<div class="container">
+    <h1>Historial de tiradas para {{session.user}}:</h1>
+<ul>
+    {% for i in session.historial %}
+    <li>
+        <button class="button is-success">{{session.historial[0][i]}}</button>
+    <li>
+    {% endfor %}
+</ul>
+</div>
 {% endblock %}

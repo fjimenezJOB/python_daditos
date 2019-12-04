@@ -25,8 +25,8 @@
                         </h1>
                         <h2 class="subtitle">
                             {% if session.dados and session.caras %}
-                                Tira los dados tantas veces como quieras!!</h1><br>
-                                Has elegido <strong>{{session.dados}} dados </strong> y <strong>{{session.caras}} caras por dado.</strong>
+                                Tira los dados tantas veces como quieras!!</h1>
+                                Has elegido <strong>{{session.dados}} dados </strong> y <strong>{{session.caras}} caras por dado.</strong><br>
                                 <a class="button is-danger" href="{{ url_for('salir') }}"> Salir </a>
                             {% else %}
                                 Elije el cuantos dados quieres tirar, y cuantas caras quieres que tenga, así de simple.

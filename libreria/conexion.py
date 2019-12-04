@@ -20,9 +20,10 @@ def insertar_usuario(user):
 
 def sacarRegistro(user):
     tiradas = []
-    resultados = collection_tiradas.find({'user'})
+    resultados = collection_tiradas.find({'user': user})
+
     for documento in resultados:
-        tiradas.append(documento.get('tiradas'))
+        tiradas.append(documento.get('tiradas'))    
     return tiradas
 
 def tirarDados(dados, caras):
@@ -30,5 +31,4 @@ def tirarDados(dados, caras):
     for i in range(dados):
        dado = random.randint(1, caras)
        resultado.append(dado)
-    print(resultado)
     return resultado
