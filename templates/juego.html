@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+    {% block title %}
+        {{super()}}
+            Juego
+    {% endblock %}
+
+    {% block main %}
+
+    <form action="{{ url_for('juego') }}" method="post">
+        
+
+        <button class="button is-success" type="submit">Tirar</button>
+
+    </form>
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% endblock %}

@@ -4,21 +4,23 @@
             Usuario
     {% endblock %}
 
-
-{% block header %}
-
-
-{% endblock %}
-
-
 {% block main %}
-<form action="{{ url_for('usuario') }}" method="post">
-    <input class="input" type="text" placeholder="Text input">
+<form class="form" action="{{ url_for('usuario') }}" method="POST">
+    <label for="user">Nickname: </label>
+    <input class="input "  name="user" type="text" placeholder="Usuario" required autofocus>
+    
+    <label for="dados">Numero de dados: </label>
+    <input type="number" name="dados" ><br>
+    <div class="select">
+            <select name="caras" required>
+              <option value="4">4 Caras</option>
+              <option value="6">6 Caras</option>
+              <option value="8">8 Caras</option>
+            </select>
+          </div>
     <button class="button is-info" type="submit">Empezar</button>
 </form>
-
 {% endblock %}
-
 
 {% block footer %}
 

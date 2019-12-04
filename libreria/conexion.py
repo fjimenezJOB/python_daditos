@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from flask import session
-import random
+import  random
 
 
 MONGO_URL_ATLAS = 'mongodb+srv://franjimenez:Francisco1231998@develop-0hasi.mongodb.net/test?retryWrites=true&w=majority'
@@ -12,17 +12,23 @@ db = client['daditos']
 collection_users = db['usuarios']
 collection_tiradas = db['tiradas']
 
-def insertar_palabra(palabra, tema):
-    longitud = len(palabra)
-    db.palabras.insert_one({'palabra': palabra, 'tema': tema, 'longitud': longitud})
+def insertar_tiradas(tirada, user):
+    collection_tiradas.insert_one({'user': user, 'tiradas': tirada})
 
-def borrar_palabras(palabra):
-    db.collection_users.delete_one({'palabra': palabra})
+def insertar_usuario(user):
+    collection_users.insert_one({'user': user})
 
-def sacarTiradas():
+def sacarRegistro(user):
     tiradas = []
-    resultados = db.palabras.find()
-    
+    resultados = collection_tiradas.find({'user'})
     for documento in resultados:
         tiradas.append(documento.get('tiradas'))
     return tiradas
+
+def tirarDados(dados, caras):
+    resultado = []
+    for i in range(dados):
+       dado = random.randint(1, caras)
+       resultado.append(dado)
+    print(resultado)
+    return resultado
