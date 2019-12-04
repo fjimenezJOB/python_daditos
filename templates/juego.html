@@ -14,22 +14,38 @@ Juego
 </form>
 {% endblock %}
 {% block footer %}
-    <h1>Historial de tiradas para {{session.user}}:</h1>
-    <table class="table 
+<h1>Historial de tiradas para {{session.user}}:</h1>
+<table class="table 
     table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-        <thead>
-            <tr>
-                <th class="is-centered">Tiradas</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in session.historial[0] %}
-                <tr>
-                    <td>
-                        <button class="button is-success">{{i}}</button>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <thead>
+        <tr>
+            <th class="is-centered">Tiradas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if mensaje %}
+        <div class="notification is-info">
+            <button class="delete"></button>
+            <h1>Parece que este usuario no tiene historial, es hora de empezar a llenarlo!!</h1>
+            <script>document.addEventListener('DOMContentLoaded', () => {
+                    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                        $notification = $delete.parentNode;
+                        $delete.addEventListener('click', () => {
+                            $notification.parentNode.removeChild($notification);
+                        });
+                    });
+                });</script>
+        </div>
+
+        {% else %}
+        {% for i in session.historial[0] %}
+        <tr>
+            <td>
+                <button class="button is-success">{{i}}</button>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
 {% endblock %}

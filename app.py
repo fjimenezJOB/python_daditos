@@ -20,6 +20,7 @@ def usuario():
 
 @app.route('/juego',  methods=['GET', 'POST'])
 def juego():
+    mensaje = False
     if session:
         usuario = session['user']
         caras = int(session['caras'])
@@ -33,8 +34,15 @@ def juego():
             insertar_tiradas(tirada, usuario)
             session['tirada'] = tirada
 
-        session['historial'] = sacarRegistro(usuario)
-        return render_template('juego.html')   
+        registro = sacarRegistro(usuario)
+        print(registro)
+        if registro[0] == None:
+            mensaje = True
+            return render_template('juego.html', mensaje = mensaje)
+        else:
+            session['historial'] = sacarRegistro(usuario)
+        print(session['historial'])
+        return render_template('juego.html')
     else:
         redirect('/')
 
