@@ -41,7 +41,6 @@ def juego():
             return render_template('juego.html', mensaje = mensaje)
         else:
             session['historial'] = sacarRegistro(usuario)
-        print(session['historial'])
         return render_template('juego.html')
     else:
         redirect('/')

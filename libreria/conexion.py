@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from flask import session
-import  random
+import random
 
 
 MONGO_URL_ATLAS = 'mongodb+srv://franjimenez:Francisco1231998@develop-0hasi.mongodb.net/test?retryWrites=true&w=majority'
@@ -43,4 +43,13 @@ def tirarDados(dados, caras):
     for i in range(dados):
        dado = random.randint(1, caras)
        resultado.append(dado)
+    total = 0
+    i = 0
+    for i in range(len(resultado)):
+        total += resultado[i]
+
     return resultado
+
+dados = tirarDados(2, 4)
+
+print(dados)
